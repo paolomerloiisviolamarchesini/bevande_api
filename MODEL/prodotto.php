@@ -64,8 +64,8 @@ class Prodotto
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         if ($stmt->execute())
-    return $stmt;
-    else return "";
+        return $stmt;
+        else return "";
     }
 }
 ?>

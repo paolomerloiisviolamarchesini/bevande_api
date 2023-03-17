@@ -7,5 +7,9 @@ class Ordine
     {
         $this->conn = $db;
     }
+
+    public function getOrder($id){
+        
+    }
 }
 ?>

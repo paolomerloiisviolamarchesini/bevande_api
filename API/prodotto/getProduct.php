@@ -5,7 +5,7 @@ header("Content-type: application/json; charset=UTF-8");
 
 $data = json_decode(file_get_contents("php://input"));
 
-if (empty($data->$id)) {
+if (empty($data->id)) {
     http_response_code(400);
     echo json_encode(["message" => "Insert a valid ID"]);
     die();
