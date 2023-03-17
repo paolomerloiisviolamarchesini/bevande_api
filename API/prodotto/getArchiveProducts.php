@@ -7,18 +7,18 @@ $data = json_decode(file_get_contents("php://input"));
 
 $db = new Database();
 $conn = $db->connect();
-$valore_nutrizionale = new Valori_Nutrizionali($conn);
-$result = $valore_nutrizionale->getArchiveProducts();
+$prodotto = new Prodotto($conn);
+$result = $prodotto->getArchiveProducts();
 
 if ($result != false) {
-    $valore_nutrizionale = array();
+    $prodotto = array();
     while ($row = $result->fetch_assoc())
     {
-        $valore_nutrizionale[] = $row;
+        $prodotto[] = $row;
     }
-    echo json_encode($valore_nutrizionale, JSON_PRETTY_PRINT);
+    echo json_encode($prodotto, JSON_PRETTY_PRINT);
 } else {
     http_response_code(400);
-    echo json_encode(["message" => "Valore nutrizionale not found"]);
+    echo json_encode(["message" => "Product not found"]);
 }
 ?>

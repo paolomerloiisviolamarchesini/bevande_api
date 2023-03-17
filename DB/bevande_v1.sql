@@ -21,7 +21,7 @@ CREATE TABLE prodotti_ordine(id_ordine int not null, id_prodotto int not null);
 
 CREATE TABLE valore_nutrizionale(id int primary key auto_increment not null,nome nvarchar(25) not null);
 
-CREATE TABLE valori_nutrizionali_prodotto ( id_valore_nutrizionale int not null, id_prodotto int not null);
+CREATE TABLE valori_nutrizionali_prodotto ( id_valore_nutrizionale int not null, id_prodotto int not null, valore int not null);
 
 ALTER TABLE prodotto ADD CONSTRAINT fk_id_categoria FOREIGN KEY (id_categoria) REFERENCES categoria(id);
 ALTER TABLE prodotti_ordine ADD CONSTRAINT fk_id_prodotto2 FOREIGN KEY (id_prodotto) REFERENCES prodotto(id);
