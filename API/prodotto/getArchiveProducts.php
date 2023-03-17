@@ -5,14 +5,6 @@ header("Content-type: application/json; charset=UTF-8");
 
 $data = json_decode(file_get_contents("php://input"));
 
-if (empty($data->nome) || empty($data->descrizione) || 
-empty($data->prezzo) || empty($data->categoria) || 
-empty($data->quantita) || empty($data->active)) {
-    http_response_code(400);
-    echo json_encode(["message" => "Fill every field"]);
-    die();
-}
-
 $db = new Database();
 $conn = $db->connect();
 $prodotto = new Prodotto($conn);

@@ -19,9 +19,8 @@ $prodotto= new Prodotto($conn);
 
 if ($prodotto->addProduct($data->$nome ,$data->$descrizione,$data->$prezzo,$data->$categoria,$data->$quantita,$data->$active) == true) 
 {
-    
     echo json_encode(["message" => "Registration completed", "productID" => $productID->fetch_assoc()['id'], "response" => true]);
 } else {
-    echo json_encode(["message" => "Registration failed successfully ", "response" => false]);
+    echo json_encode(["message" => "Registration failed", "response" => false]);
 }
 ?>
