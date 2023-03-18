@@ -3,10 +3,9 @@ require("../../COMMON/connect.php");
 require("../../MODEL/utente.php");
 
 header("Content-type: application/json; charset=UTF-8");
+$parts = explode("/", $_SERVER["REQUEST_URI"]);
 
-$data = json_decode(file_get_contents("php://input"));
-
-if (empty($data->id)) {
+if (empty($parts[5]->$id)) {
     http_response_code(404);
     echo json_encode(["message" => "Insert a valid ID"]);
     exit();

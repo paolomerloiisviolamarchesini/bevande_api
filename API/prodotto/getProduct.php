@@ -3,9 +3,9 @@ require __DIR__ . '/../../COMMON/connect.php';
 require __DIR__ . '/../../MODEL/prodotto.php';
 header("Content-type: application/json; charset=UTF-8");
 
-$data = json_decode(file_get_contents("php://input"));
+$parts = explode("/", $_SERVER["REQUEST_URI"]);
 
-if (empty($data->id)) {
+if (empty($parts[5]->$id)) {
     http_response_code(400);
     echo json_encode(["message" => "Insert a valid ID"]);
     die();
@@ -14,7 +14,7 @@ if (empty($data->id)) {
 $db = new Database();
 $conn = $db->connect();
 $prodotto = new Prodotto($conn);
-$result = $prodotto->getProduct((int)$id);
+$result = $prodotto->getProduct($id);
 
 if ($result->num_rows > 0)
 {
