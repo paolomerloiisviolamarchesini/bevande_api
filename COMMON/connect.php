@@ -1,28 +1,32 @@
 <?php
+
 class Database
 {
-    //credentials localhost
-    private $server_local = "localhost";
-    private $user_local = "root";
-    private $passwd_local = "";
-    private $db_local = "bevande";
+    private $dbConnection = null;
 
-    //common credentials
-    private $port = "3306";
-    public $conn;
-
-    public function connect() //effettua la connessione al server
-
+    public function __construct()
     {
+        $host = "localhost";
+        $port = "3306";
+        $db   = "bevande";
+        $user = "root";
+        $pass = "";
+
         try {
-            $this->conn = new mysqli($this->server_local, $this->user_local, $this->passwd_local, $this->db_local, $this->port);
+            $this->dbConnection = new PDO(
+                "mysql:host=$host;port=$port;charset=utf8mb4;dbname=$db",
+                $user,
+                $pass
+            );
+        } catch (PDOException $e) {
+            exit($e->getMessage());
         }
-        //la classe mysqli non estende l'interfaccia Throwable e non può essere usata come un'eccezione. 
-        catch (Exception $ex) {
-            die("Error connecting to database $ex\n\n");
-        }
-        return $this->conn;
     }
 
-    
+    public function getConnection()
+    {
+        return $this->dbConnection;
+    }
 }
+?>
+
