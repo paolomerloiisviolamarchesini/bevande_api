@@ -23,7 +23,7 @@ class Database
         }
     }
 
-    public function getConnection()
+    public function connect()
     {
         return $this->dbConnection;
     }
