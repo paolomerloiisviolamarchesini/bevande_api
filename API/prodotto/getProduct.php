@@ -4,12 +4,11 @@ require __DIR__ . '/../../MODEL/prodotto.php';
 
 header("Content-type: application/json; charset=UTF-8");
 
-if (empty(!isset($_GET['id']) || empty($id = $_GET['id']))) 
+if (!isset($_GET['id']) || empty($id = $_GET['id']))
 {
     echo json_encode(array("Message" => "No id passed"));
     die();
 }
-
 
 $db = new Database();
 $conn = $db->connect();

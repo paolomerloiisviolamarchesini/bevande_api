@@ -3,8 +3,6 @@ require __DIR__ . '/../../COMMON/connect.php';
 require __DIR__ . '/../../MODEL/prodotto.php';
 header("Content-type: application/json; charset=UTF-8");
 
-$parts = explode("/", $_SERVER["REQUEST_URI"]);
-
 $db = new Database();
 $conn = $db->connect();
 $prodotto = new Prodotto($conn);
