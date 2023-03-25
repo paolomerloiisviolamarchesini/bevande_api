@@ -13,16 +13,22 @@ if (!isset($_GET['id']) || empty($id = $_GET['id']))
 $db = new Database();
 $conn = $db->connect();
 $prodotto = new Prodotto($conn);
+//qui result è un array
 $result = $prodotto->getProduct($id);
+//adesso result è un oggetto
+$result = (json_decode(json_encode($result)));
 
-if ($result->num_rows > 0)
+if ((int)$result->id >0)
 {
-    echo json_encode(array($result->fetch_assoc()), JSON_PRETTY_PRINT);
+
+    echo json_encode($result, JSON_PRETTY_PRINT);
+    
     die();
 }
 else
 {
     echo json_encode(array("Message" => "No record"));
+    echo var_dump($result);
     die();
 }
 ?>
